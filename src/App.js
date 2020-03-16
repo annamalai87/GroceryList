@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import ShowGroceries from "./components/ShowGroceries.js";
+import NavigationBar from "./components/NavigationBar";
+import AddGrocery from "./components/AddGrocery";
+import SearchGroceries from "./components/SearchGroceries"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+  state = {
+    total: 0,
+    todos: []
+  };
+  render() {
+    return (
+      <div>
+        <NavigationBar></NavigationBar>
+        <SearchGroceries add={this.add}></SearchGroceries>
+        <ShowGroceries className="Todo" todos={this.state.todos} flip={this.flip} />
+        <AddGrocery add={this.add}></AddGrocery>
+      </div>
+    );
+  }
+
+  add = name => {
+    var copy = this.state.todos;
+    var current = this.state.total + 1;
+    copy.push({
+      key: current,
+      name: name,
+      isCompleted: false
+    });
+    this.setState({
+      total: current,
+      todos: copy
+    });
+  };
+
+  flip = key => {
+    this.setState({
+      todos: this.state.todos.map(element => {
+        if (element.key === key) {
+          element.isCompleted = !element.isCompleted;
+        }
+        return element;
+      })
+    });
+  };
 }
-
-export default App;
