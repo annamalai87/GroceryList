@@ -14,7 +14,7 @@ export default class App extends React.Component {
     return (
       <div>
         <NavigationBar></NavigationBar>
-        <SearchGroceries add={this.add}></SearchGroceries>
+        <SearchGroceries search={this.search}></SearchGroceries>
         <ShowGroceries className="Todo" todos={this.state.todos} flip={this.flip} />
         <AddGrocery add={this.add}></AddGrocery>
       </div>
@@ -27,13 +27,28 @@ export default class App extends React.Component {
     copy.push({
       key: current,
       name: name,
-      isCompleted: false
+      isCompleted: false,
+      searchable: true
     });
     this.setState({
       total: current,
       todos: copy
     });
   };
+
+  search = name => {
+    this.setState({
+      todos: this.state.todos.map(element => {
+        if (element.name.toLowerCase().startsWith(name.toLowerCase())) {
+          element.searchable = true;
+        } else {
+          element.searchable = false;
+        }
+        return element;
+      })
+    });
+
+  }
 
   flip = key => {
     this.setState({

@@ -4,13 +4,11 @@ export default class GroceryItem extends Component {
   customStyle = isCompleted => {
         if (isCompleted) {
           return {
-            textDecoration: 'line-through',
-            font: "500px"
+            textDecoration: 'line-through'
           };
         } else {
           return {
-            textDecoration: 'none',
-            font: "500px"
+            textDecoration: 'none'
           };
         }
       };

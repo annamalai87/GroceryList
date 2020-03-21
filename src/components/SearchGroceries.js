@@ -1,40 +1,41 @@
 import React, { Component } from "react";
-import { Form, FormControl, Navbar } from "react-bootstrap";
 
 export default class SearchGroceries extends Component {
   constructor(props) {
     super(props);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onKeyUp = this.onSubmit.bind(this);
   }
 
   onSubmit(e) {
-    e.preventDefault();
-    this.props.add(this.text.value);
-    this.text.value = "";
+    if (this.text.value !== null) this.props.search(this.text.value);
   }
 
   render() {
     return (
       <div className="search-align">
-      <Navbar bg="light" variant="light">
-        <Form>
-          <Form.Group>
-            <FormControl
-              ref={input => (this.text = input)}
+        <section>
+          <div>
+            <input
+              onKeyUp={e => this.onSubmit(e)}
+              ref={node => (this.text = node)}
               type="text"
-              style={{ width: "250px", padding: "20px" }}
-              placeholder="Search grocery list"
-              onSubmit={e => {
-                this.onSubmit(e);
+              placeholder="Search groceries"
+              style={{
+                padding: "7px",
+                width: "75%",
+                marginBottom: ".5rem",
+                borderRadius: "5px"
               }}
-            />
-          </Form.Group>
-          <label>
+            ></input>
+          </div>
+          <div>
             <input type="checkbox" id="box1" name="box1" />
-            { } <span style={{"fontSize":"85%"}}>Show only yet-to-buy items</span>
-          </label>
-          </Form>
-          </Navbar>
+            {}{" "}
+            <span style={{ fontSize: "85%", color: "brown" }}>
+              Show only yet-to-buy items
+            </span>
+          </div>
+        </section>
       </div>
     );
   }

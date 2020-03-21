@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Navbar,Form, FormControl, Button } from "react-bootstrap";
 
 export default class AddTodos extends Component {
   constructor(props) {
@@ -16,29 +15,34 @@ export default class AddTodos extends Component {
   render() {
     return (
       <div className="add-align">
-      <Navbar bg="light" variant="light">
-        <Form bg="outline" >
-          <Form.Group>
-            <FormControl
+        <section>
+          <form>
+            <input
               ref={input => (this.text = input)}
               type="text"
               placeholder="What do you want to buy?"
-              style={{ width: "250px", padding: "20px" }}
+              style={{
+                padding: "16px 32px",
+                width: "75%",
+                marginBottom: ".5rem",
+                borderRadius: "5px",
+                border: "0.5px solid #008CBA"
+              }}
               onSubmit={e => {
                 this.onSubmit(e);
               }}
-            />
-          </Form.Group>
-          <Button
-            type="submit"
-            variant="outline-primary"
-            onClick={this.onSubmit}
-            style={{ width: "250px" }}
-          >
-            Add item
-          </Button>
-        </Form>
-        </Navbar>
+            ></input>
+            {" "}
+            <button
+              type="submit"
+              variant="outline-primary"
+              onClick={this.onSubmit}
+              style={{ width: "75%", alignContent: "center" }}
+            >
+              Add item
+            </button>
+          </form> 
+        </section>
       </div>
     );
   }
