@@ -2,59 +2,59 @@ import React from "react";
 import "./App.css";
 import ShowGroceries from "./components/ShowGroceries.js";
 import NavigationBar from "./components/NavigationBar";
-import AddGrocery from "./components/AddGrocery";
-import SearchGroceries from "./components/SearchGroceries"
+import AddGroceries from "./components/AddGroceries";
+import SelectGroceries from "./components/SelectGroceries";
+import { v4 as uuid } from "uuid";
 
 export default class App extends React.Component {
   state = {
-    total: 0,
-    todos: []
+    showOnlyYetToBuy: false,
+    groceries: []
   };
   render() {
     return (
       <div>
         <NavigationBar></NavigationBar>
-        <SearchGroceries search={this.search}></SearchGroceries>
-        <ShowGroceries className="Todo" todos={this.state.todos} flip={this.flip} />
-        <AddGrocery add={this.add}></AddGrocery>
+        <AddGroceries add={this.add}></AddGroceries>
+        <SelectGroceries selectYetToBuy={this.selectYetToBuy}></SelectGroceries>
+        <ShowGroceries
+          state={this.state}
+          flip={this.flip}
+          delete={this.delete}
+        />
       </div>
     );
   }
 
   add = name => {
-    var copy = this.state.todos;
-    var current = this.state.total + 1;
-    copy.push({
-      key: current,
-      name: name,
-      isCompleted: false,
-      searchable: true
-    });
+    if (name !== null && name !== "") {
+      this.setState({
+        groceries: [
+          {
+            key: uuid(),
+            name: name,
+            isBought: false
+          }
+        ].concat(this.state.groceries)
+      });
+    }
+  };
+
+  delete = key => {
     this.setState({
-      total: current,
-      todos: copy
+      groceries: this.state.groceries.filter(element => element.key !== key)
     });
   };
 
-  search = name => {
-    this.setState({
-      todos: this.state.todos.map(element => {
-        if (element.name.toLowerCase().startsWith(name.toLowerCase())) {
-          element.searchable = true;
-        } else {
-          element.searchable = false;
-        }
-        return element;
-      })
-    });
-
-  }
+  selectYetToBuy = boxstate => {
+    this.setState({ showOnlyYetToBuy: boxstate, groceries: this.state.groceries });
+  };
 
   flip = key => {
     this.setState({
-      todos: this.state.todos.map(element => {
+      groceries: this.state.groceries.map(element => {
         if (element.key === key) {
-          element.isCompleted = !element.isCompleted;
+          element.isBought = !element.isBought;
         }
         return element;
       })

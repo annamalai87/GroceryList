@@ -1,28 +1,38 @@
 .grocery-item {
   margin-top: 1%;
-  margin-left: 3rem;
-  margin-bottom: 3%;
+  margin-left: 15%;
+  margin-bottom: 1%;
 }
 
-.add-align {
+#add-align {
+  margin-top: 5rem;
   margin-left: 2rem;
-  margin-right: 15%;
+  margin-right: 25%;
+  margin-left: 15%;
   flex: auto;
   flex-direction: row;
 }
 
 .search-align {
-  margin-top: 5rem;
   margin-left: 2rem;
-  margin-right: 15%;
-  margin-bottom: 7%;
+  margin-right: 45%;
+  margin-left: 15%;
+  margin-bottom: 3%;
 }
 
-.add-align button {
+#add-align input {
+  padding: 12px 24px;
+  width: 75%;
+  margin-bottom: .5rem;
+  border-radius: 5px;
+  border: 0.5px solid #007bff
+}
+
+#add-align button {
   background-color: white; /* Green */
-  border:  0.5px solid #008CBA;
-  color: #008CBA;
-  padding: 8px 16px;
+  border:  0.5px solid #007bff;
+  color: #007bff;
+  padding: 12px 24px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -33,7 +43,97 @@
   border-radius: 5px;
 }
 
-.add-align button:hover {
-  background-color:#008CBA;
+#add-align button:hover {
+  background-color: #007bff;
   color: white;
+}
+
+@media screen and (min-width:500px) and (max-width: 1200px) {
+  #add-align {
+    margin-top: 5rem;
+    margin-left: 2rem;
+    margin-right: 15%;
+    flex: auto;
+    flex-direction: row;
+  }
+
+  #add-align input {
+    padding: 7px 14px;
+    width: 70%;
+    margin-bottom: .5rem;
+    border-radius: 5px;
+    border: 0.5px solid #007bff;
+  }
+
+  #add-align button {
+    background-color: #007bff; /* Green */
+    border:  0.5px solid rgb(0, 74, 186);
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .search-align {
+    margin-left: 2rem;
+    margin-right: 15%;
+    margin-bottom: 7%;
+  }
+
+  .grocery-item {
+    margin-top: 1%;
+    margin-left: 2rem;
+    margin-bottom: 3%;
+  }
+}
+
+@media screen and (max-width: 499px) {
+  #add-align {
+    margin-top: 5rem;
+    margin-left: 2rem;
+    margin-right: 10%;
+    flex: auto;
+    flex-direction: row;
+  }
+
+  #add-align input {
+    padding: 4px 5.5px;
+    width: 72%;
+    margin-bottom: .5rem;
+    border-radius: 5px;
+    border: 0.5px solid #007bff;
+  }
+
+  #add-align button {
+    background-color: #007bff; /* Green */
+    border:  0.5px solid rgb(0, 74, 186);
+    color: white;
+    padding: 4px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .search-align {
+    margin-left: 2rem;
+    margin-right: 15%;
+    margin-bottom: 7%;
+  }
+
+  .grocery-item {
+    margin-top: 1%;
+    margin-left: 2rem;
+    margin-bottom: 3%;
+  }
 }

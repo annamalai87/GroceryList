@@ -1,33 +1,32 @@
 import React, { Component } from "react";
 
-export default class AddTodos extends Component {
+export default class AddGroceries extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount(){
+    this.text.focus();
   }
 
   onSubmit(e) {
     e.preventDefault();
     this.props.add(this.text.value);
     this.text.value = "";
+    this.componentDidMount();
   }
 
   render() {
     return (
-      <div className="add-align">
+      <div id="add-align">
         <section>
           <form>
             <input
               ref={input => (this.text = input)}
               type="text"
               placeholder="What do you want to buy?"
-              style={{
-                padding: "16px 32px",
-                width: "75%",
-                marginBottom: ".5rem",
-                borderRadius: "5px",
-                border: "0.5px solid #008CBA"
-              }}
               onSubmit={e => {
                 this.onSubmit(e);
               }}
@@ -36,8 +35,9 @@ export default class AddTodos extends Component {
             <button
               type="submit"
               variant="outline-primary"
-              onClick={this.onSubmit}
-              style={{ width: "75%", alignContent: "center" }}
+              onClick={e => {
+                this.onSubmit(e);
+              }}
             >
               Add item
             </button>
