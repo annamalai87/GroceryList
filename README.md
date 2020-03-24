@@ -1,6 +1,9 @@
 
 ## A grocery list application built using NodeJs and React
 
+### Playground 
+[https://annamalai87.github.io/GroceryList](https://annamalai87.github.io/GroceryList)
+
 ### Available Scripts
 
 In the project directory, you can run:
